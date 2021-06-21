@@ -4,7 +4,7 @@ services:
 before_install:
   - docker build -t s3test-website-test -f Dockerfile.test .
 script:
-  - docker run s3test-website-test
+  - docker run -e CI=true s3test-website-test
 deploy:
   provider: script
   script: bash ./scripts/deploy.sh
