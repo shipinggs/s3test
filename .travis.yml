@@ -10,7 +10,6 @@ script:
 before_deploy:
   - docker build -t s3test-website .
 
-#Run our deployment container via shell script if commiting to the master branch
 deploy:
   skip_cleanup: true
   provider: script
