@@ -1,0 +1,19 @@
+sudo: required
+
+services:
+    - docker
+before_install:
+  - docker build -t s3test-website-test -f Dockerfile.test .
+script:
+  - docker run s3test-website-test
+
+before_deploy:
+  - docker build -t s3test-website .
+
+#Run our deployment container via shell script if commiting to the master branch
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash ./scripts/deploy.sh
+  on:
+    branch: master
